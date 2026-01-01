@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of HEXZACT - Digital Artist and Designer showcasing UI designs, Posters, and creative works.">
+    <meta name="author" content="HEXZACT">
+    <meta name="keywords" content="portfolio, design, UI, illustration, digital art, HEXZACT">
+    <title>HEXWRKS</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        /* --- 1. SETUP & VARIABLES --- */
+        :root {
+            --bg-color: #000000;
+            --text-main: #bcbec0; /* Abu-abu terang */
+            --accent: #adbcb0; /* Sage Green */
+            --alert: #ff3333; /* Merah untuk error/locked */
+            --border-width: 1px;
+            --padding-std: 1.5rem;
+            --font-mono: 'Courier New', Courier, monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            cursor: crosshair;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            line-height: 1.4;
+            overflow-x: hidden;
+            font-size: 14px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- 2. LAYOUT UTILITIES --- */
+        .container {
+            width: 100%;
+            max-width: 1920px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- 3. HEADER & ASCII ART --- */
+        header {
+            border-bottom: var(--border-width) solid var(--accent);
+            padding: var(--padding-std);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .ascii-logo {
+            white-space: pre;
+            font-size: 10px;
+            line-height: 10px;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .intro-text h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            mix-blend-mode: difference;
+        }
+
+        .intro-text p {
+            max-width: 600px;
+            margin-top: 1rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+
+
+        /* --- 4. NAVIGATION --- */
+        nav {
+            position: sticky;
+            top: 0;
+            background: var(--bg-color);
+            border-bottom: var(--border-width) solid var(--accent);
+            z-index: 100;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            flex: 1;
+            padding: 1rem;
+            border-right: var(--border-width) solid var(--accent);
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .nav-item:first-child {
+            border-left: var(--border-width) solid var(--accent);
+        }
+
+        .nav-item:not(.locked):hover {
+            background-color: var(--accent);
+            color: var(--bg-color);
+        }
+
+        /* --- LOGIC UNTUK [ LOCKED ] --- */
+        .nav-item.locked {
+            color: #444; /* Warna redup */
+            cursor: not-allowed;
+            letter-spacing: 1px;
+            background: repeating-linear-gradient(
+                45deg,
+                rgba(0,0,0,0),
+                rgba(0,0,0,0) 2px,
+                #141414 2px,
+                #141414 4px
+            );
+        }
+
+        .nav-item.locked:hover {
+            color: var(--alert); /* Berubah merah saat di-hover */
+            text-shadow: 0 0 5px var(--alert);
+        }
+
+        /* Social Media Group */
+        .social-group {
+            display: flex;
+            flex: 2;
+        }
+        
+        .social-link {
+            flex: 1;
+            text-align: center;
+            padding: 1rem;
+            border-right: var(--border-width) solid var(--accent);
+            font-size: 0.9em;
+        }
+        
+        .social-link:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        /* --- 5. BENTO GRID (WORKS) --- */
+        #works {
+            padding: var(--padding-std);
+        }
+
+        .scrolling-text {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+        }
+
+        .scrolling-text div {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-auto-rows: 300px;
+            gap: 1rem;
+            grid-auto-flow: dense;
+        }
+
+        .bento-item {
+            border: var(--border-width) solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            background-color: #1a1a1a;
+        }
+
+        .bento-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(120%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+
+        .bento-item:hover img {
+            filter: grayscale(0%) contrast(100%);
+            transform: scale(1.05);
+        }
+
+        .item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            color: var(--accent);
+            padding: 0.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-top: 1px solid var(--accent);
+        }
+
+        .bento-item:hover .item-info {
+            transform: translateY(0);
+        }
+
+
+
+        /* Modifiers */
+        .wide { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+        .big  { grid-column: span 2; grid-row: span 2; }
+
+        .renaissance-deco {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 10px;
+            padding: 2px 6px;
+            border: 1px solid var(--accent);
+            background: var(--bg-color);
+            z-index: 10;
+        }
+
+        /* --- MODAL --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--accent);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: var(--alert);
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .ascii-logo {
+                font-size: 8px;
+                line-height: 8px;
+            }
+            .intro-text h1 { font-size: clamp(1.5rem, 4vw, 3rem); }
+            .bento-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+            .wide { grid-column: span 2; }
+            .tall { grid-row: span 2; }
+            .big { grid-column: span 2; grid-row: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            .ascii-logo {
+                font-size: 6px;
+                line-height: 6px;
+                margin-bottom: 10px;
+            }
+            .intro-text h1 { font-size: 2rem; }
+            .intro-text p { max-width: 100%; }
+            .bento-grid { grid-template-columns: 1fr; }
+            .wide, .tall, .big { grid-column: span 1; grid-row: span 1; }
+
+            nav { flex-direction: column; }
+            .nav-item, .social-group { width: 100%; border-right: none; border-bottom: 1px solid var(--accent); }
+            .social-group { flex-direction: row; }
+
+            .close {
+                top: 10px;
+                right: 10px;
+                font-size: 30px;
+            }
+
+            body { font-size: 12px; }
+            header { padding: 1rem; }
+            #works { padding: 1rem; }
+            footer { padding: 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .ascii-logo { display: none; }
+            .intro-text h1 { font-size: 1.5rem; }
+            nav .nav-item { padding: 0.75rem; min-width: auto; }
+            .social-link { padding: 0.75rem; font-size: 0.8em; }
+            .bento-item { min-height: 200px; }
+            .renaissance-deco { font-size: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>
+            <div class="ascii-logo">
+                               _____                                                                                              
+       __     __          _____\    \ _____       _____ _____  ______       _____                _____     ________    ________   
+      /  \   /  \        /    / |    |\    \     /    //    / /     /|    /      |_         _____\    \_  /        \  /        \  
+     /   /| |\   \      /    /  /___/| \    |   |    /|     |/     / |   /         \       /     /|     ||\         \/         /| 
+    /   //   \\   \    |    |__ |___|/  \    \ /    / |\____\\    / /   |     /\    \     /     / /____/|| \            /\____/ | 
+   /    \_____/    \   |       \         \    |    /   \|___|/   / /    |    |  |    \   |     | |____|/ |  \______/\   \     | | 
+  /    /\_____/\    \  |     __/ __      /    |    \      /     /_/____ |     \/      \  |     |  _____   \ |      | \   \____|/  
+ /    //\_____/\\    \ |\    \  /  \    /    /|\    \    /     /\      ||\      /\     \ |\     \|\    \   \|______|  \   \       
+/____/ |       | \____\| \____\/    |  |____|/ \|____|  /_____/ /_____/|| \_____\ \_____\| \_____\|    |            \  \___\      
+|    | |       | |    || |    |____/|  |    |   |    |  |    |/|     | || |     | |     || |     /____/|             \ |   |      
+|____|/         \|____| \|____|   | |  |____|   |____|  |____| |_____|/  \|_____|\|_____| \|_____|    ||              \|___|      
+                              |___|/                                                             |____|/                                   
+                                                                                                                                                                           
+            </div>
+            <div class="intro-text">
+
+                <p>WELCOME</p>
+            </div>
+        </div>
+        
+        <a href="mailto:emailmu@contoh.com" style="padding: 2rem; border: 1px solid var(--accent); display:block; text-align:center;">
+            STATUS: <span style="color: #0f0; animation: blink 1s infinite;">●</span> AVAILABLE<br>
+            <br>
+            [ HIRE_ME ]
+        </a>
+    </header>
+
+    <nav>
+        <a href="#works" class="nav-item">WORKS</a>
+        
+        <div class="nav-item locked" onclick="alert('SYSTEM ERROR: ACCESS DENIED. FILE ENCRYPTED.')">
+            [ LOCKED ]
+        </div>
+        
+        <div class="social-group">
+            <a href="https://behance.net" target="_blank" class="social-link">BEHANCE</a>
+            <a href="https://instagram.com" target="_blank" class="social-link">INSTAGRAM</a>
+            <a href="https://twitter.com" target="_blank" class="social-link">TWITTER</a>
+            <a href="https://tiktok.com" target="_blank" class="social-link">TIKTOK</a>
+        </div>
+    </nav>
+
+    <main id="works">
+        <div style="border: 1px solid var(--accent); margin-bottom: 2rem; padding: 0.5rem;">
+            <div class="scrolling-text" style="font-family: var(--font-mono); text-transform: uppercase;">
+                <div>+++ ACCESSING DATABASE... +++ RENDERING PIXELS... +++ WELCOME USER +++ SCROLL DOWN FOR ARTEFACTS +++</div>
+            </div>
+        </div>
+
+        <div class="bento-grid">
+            <div class="bento-item wide">
+                <span class="renaissance-deco">FIG. 01</span>
+                <img src="ASSET 1.png" alt="Project 1">
+                <div class="item-info"><h3>PROJECT_GENESIS</h3><p>UI Design</p></div>
+            </div>
+
+            <div class="bento-item tall">
+                <span class="renaissance-deco">CLASSIC_REF</span>
+                <img src="ASSET 2.jpg" alt="Art">
+                <div class="item-info"><h3>DAVID_REMIX</h3><p>Poster Art</p></div>
+            </div>
+
+            <div class="bento-item">
+                <span class="renaissance-deco">ASCII_03</span>
+                <img src="ASSET 3.jpg" alt="Pixel">
+                <div class="item-info"><h3>CYBER_PUNK</h3><p>Illustration</p></div>
+            </div>
+
+            <div class="bento-item">
+                 <span class="renaissance-deco">LOGOTYPE</span>
+                <img src="ASSET 4.jpg" alt="Abstract">
+                <div class="item-info"><h3>LIQUID_METAL</h3><p>3D Render</p></div>
+            </div>
+
+            <div class="bento-item big">
+                <span class="renaissance-deco">MASTERPIECE</span>
+                <img src="ASSET 5.jpg" alt="Main Work">
+                <div class="item-info"><h3>THE_LAST_PIXEL</h3><p>Branding</p></div>
+            </div>
+             
+             <div class="bento-item wide">
+                <span class="renaissance-deco">TYPE_00</span>
+                <img src="ASSET 6.jpg" alt="Typo">
+                <div class="item-info"><h3>MONO_TYPE</h3><p>Layout</p></div>
+            </div>
+
+            <div class="bento-item wide">
+                <span class="renaissance-deco">TYPE_00</span>
+                <img src="ASSET 7.jpg" alt="Typo">
+                <div class="item-info"><h3>MONO_TYPE</h3><p>Layout</p></div>
+            </div>
+
+            <div class="bento-item">
+                 <span class="renaissance-deco">LOGOTYPE</span>
+                <img src="ASSET 8.png" alt="Abstract">
+                <div class="item-info"><h3>LIQUID_METAL</h3><p>3D Render</p></div>
+            </div>
+
+            <div class="bento-item tall">
+                <span class="renaissance-deco">CLASSIC_REF</span>
+                <img src="ASSET 10.png" alt="Art">
+                <div class="item-info"><h3>DAVID_REMIX</h3><p>Poster Art</p></div>
+            </div>
+
+            <div class="bento-item big">
+                <span class="renaissance-deco">MASTERPIECE</span>
+                <img src="ASSET 11.jpg" alt="Main Work">
+                <div class="item-info"><h3>THE_LAST_PIXEL</h3><p>Branding</p></div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="border-top: 1px solid var(--accent); padding: 2rem; margin-top: auto;">
+
+        <p style="font-size: 0.8rem; text-align: center;">
+            © 2026.HEXZACT</p>
+    </footer>
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="">
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const bentoItems = document.querySelectorAll('.bento-item');
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeBtn = document.querySelector('.close');
+
+        bentoItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.querySelector('img').src;
+                modalImage.src = imgSrc;
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                modal.style.display = 'none';
+            }
+        });
+
+        // Background music control
+        const bgMusic = document.getElementById('ambient-music');
+        const musicBtn = document.getElementById('music-toggle');
+        const musicTitle = document.getElementById('music-title');
+        const minimizeBtn = document.getElementById('minimize-title');
+
+        // Debug audio loading
+        bgMusic.addEventListener('error', function(e) {
+            console.error('Audio error:', e);
+            alert('Audio file failed to load. Check console for details.');
+        });
+
+        bgMusic.addEventListener('canplaythrough', function() {
+            console.log('Audio loaded successfully');
+        });
+
+        // Set initial button state to on
+        musicBtn.textContent = '🔊';
+
+        // Try to auto-play music on load
+        bgMusic.play().catch(function(error) {
+            console.log('Autoplay blocked by browser:', error);
+            // Keep button as 🔊, user can click to play
+        });
+
+        // Update button state based on actual play/pause
+        bgMusic.addEventListener('play', function() {
+            musicBtn.textContent = '🔊';
+        });
+
+        bgMusic.addEventListener('pause', function() {
+            musicBtn.textContent = '🔇';
+        });
+
+        musicBtn.addEventListener('click', function() {
+            if (bgMusic.paused) {
+                bgMusic.play().catch(function(error) {
+                    console.error('Play failed:', error);
+                    alert('Failed to play audio. Check browser permissions.');
+                });
+            } else {
+                bgMusic.pause();
+            }
+        });
+
+        minimizeBtn.addEventListener('click', function() {
+            musicTitle.style.display = 'none';
+        });
+    });
+</script>
+
+<audio id="ambient-music" src="final-message-281674.mp3" loop preload="auto" autoplay style="display: none;"></audio>
+
+<div id="music-title" style="position: fixed; bottom: 20px; right: 80px; border: 1px solid var(--accent); padding: 5px; background: var(--bg-color); z-index: 1000;">
+    <span id="title-text" style="color: var(--accent); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;">FINAL MESSAGE - u_jufseb28pa</span>
+    <button id="minimize-title" style="background: none; border: none; color: var(--accent); cursor: crosshair; font-size: 10px; margin-left: 5px;">×</button>
+</div>
+
+<button id="music-toggle" style="position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: var(--bg-color); border: none; padding: 10px; cursor: crosshair; font-size: 16px; z-index: 1000;">🔇</button>
+
+</body>
