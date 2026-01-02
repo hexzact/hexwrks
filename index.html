@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,18 +8,19 @@
     <meta name="author" content="HEXZACT">
     <meta name="keywords" content="portfolio, design, UI, illustration, digital art, HEXZACT">
     <title>HEXWRKS</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
+    <link rel="icon" type="image/x-icon" href="FAVICON/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="FAVICON/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="FAVICON/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="FAVICON/apple-touch-icon.png">
+    <link rel="manifest" href="FAVICON/site.webmanifest">
+    <link rel="preload" href="final-message-281674.mp3" as="audio">
     <style>
         /* --- 1. SETUP & VARIABLES --- */
         :root {
             --bg-color: #000000;
-            --text-main: #bcbec0; /* Abu-abu terang */
-            --accent: #adbcb0; /* Sage Green */
-            --alert: #ff3333; /* Merah untuk error/locked */
+            --text-main: #ffffff; /* Abu-abu terang */
+            --accent: #ffffff; /* Sage Green */
+            --alert: #ff0000; /* Merah untuk error/locked */
             --border-width: 1px;
             --padding-std: 1.5rem;
             --font-mono: 'Courier New', Courier, monospace;
@@ -87,7 +89,22 @@
             padding-left: 1rem;
         }
 
+        .hire-me {
+            padding: 2rem;
+            border: 2px solid var(--accent);
+            display: block;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: rgba(173, 188, 176, 0.1);
+            transition: all 0.3s ease;
+        }
 
+        .hire-me:hover {
+            background: var(--accent);
+            color: var(--bg-color);
+        }
 
         /* --- 4. NAVIGATION --- */
         nav {
@@ -173,6 +190,7 @@
         .scrolling-text div {
             display: inline-block;
             animation: scroll 20s linear infinite;
+            will-change: transform;
         }
 
         @keyframes scroll {
@@ -184,7 +202,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             grid-auto-rows: 300px;
-            gap: 1rem;
+            gap: 0.5rem;
             grid-auto-flow: dense;
         }
 
@@ -199,12 +217,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) contrast(120%);
+            filter: contrast(120%);
             transition: filter 0.5s ease, transform 0.5s ease;
+            will-change: filter, transform;
         }
 
         .bento-item:hover img {
-            filter: grayscale(0%) contrast(100%);
+            filter: contrast(100%);
             transform: scale(1.05);
         }
 
@@ -309,9 +328,11 @@
             .bento-grid { grid-template-columns: 1fr; }
             .wide, .tall, .big { grid-column: span 1; grid-row: span 1; }
 
-            nav { flex-direction: column; }
-            .nav-item, .social-group { width: 100%; border-right: none; border-bottom: 1px solid var(--accent); }
-            .social-group { flex-direction: row; }
+            nav { flex-direction: column; border-bottom: none; }
+            .nav-item { width: 100%; border-right: none; border-bottom: none; }
+            .nav-item:first-child { border-left: none; }
+            .social-group { width: 100%; flex-direction: column; border-bottom: none; }
+            .social-link { border-right: none; border-bottom: none; }
 
             .close {
                 top: 10px;
@@ -337,8 +358,10 @@
 </head>
 <body>
 
+
+
 <div class="container">
-    <header>
+<header>
         <div>
             <div class="ascii-logo">
                                _____                                                                                              
@@ -361,7 +384,7 @@
             </div>
         </div>
         
-        <a href="mailto:emailmu@contoh.com" style="padding: 2rem; border: 1px solid var(--accent); display:block; text-align:center;">
+        <a href="mailto:emailmu@contoh.com" class="hire-me">
             STATUS: <span style="color: #0f0; animation: blink 1s infinite;">●</span> AVAILABLE<br>
             <br>
             [ HIRE_ME ]
@@ -394,63 +417,99 @@
 
         <div class="bento-grid">
             <div class="bento-item wide">
-                <span class="renaissance-deco">FIG. 01</span>
-                <img src="ASSET 1.png" alt="Project 1">
-                <div class="item-info"><h3>PROJECT_GENESIS</h3><p>UI Design</p></div>
+                <span class="renaissance-deco">.01</span>
+                <img src="ASSET IMAGE/ASSET 1.png" alt="Project 1" loading="lazy">
+                <div class="item-info"><h3>ESCAPE PLAN</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item tall">
-                <span class="renaissance-deco">CLASSIC_REF</span>
-                <img src="ASSET 2.jpg" alt="Art">
-                <div class="item-info"><h3>DAVID_REMIX</h3><p>Poster Art</p></div>
+                <span class="renaissance-deco">.02</span>
+                <img src="ASSET IMAGE/ASSET 2.jpg" alt="Art" loading="lazy">
+                <div class="item-info"><h3>MAGI</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item">
-                <span class="renaissance-deco">ASCII_03</span>
-                <img src="ASSET 3.jpg" alt="Pixel">
-                <div class="item-info"><h3>CYBER_PUNK</h3><p>Illustration</p></div>
+                <span class="renaissance-deco">.03</span>
+                <img src="ASSET IMAGE/ASSET 13.png" alt="Pixel" loading="lazy">
+                <div class="item-info"><h3>CYBER_PUNK</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item">
-                 <span class="renaissance-deco">LOGOTYPE</span>
-                <img src="ASSET 4.jpg" alt="Abstract">
-                <div class="item-info"><h3>LIQUID_METAL</h3><p>3D Render</p></div>
+                 <span class="renaissance-deco">.04</span>
+                <img src="ASSET IMAGE/ASSET 4.jpg" alt="Abstract" loading="lazy">
+                <div class="item-info"><h3>TRASH</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item big">
-                <span class="renaissance-deco">MASTERPIECE</span>
-                <img src="ASSET 5.jpg" alt="Main Work">
-                <div class="item-info"><h3>THE_LAST_PIXEL</h3><p>Branding</p></div>
+                <span class="renaissance-deco">.05</span>
+                <img src="ASSET IMAGE/ASSET 5.jpg" alt="Main Work" loading="lazy">
+                <div class="item-info"><h3>DREAM</h3><p>DESIGN EXPLORATION</p></div>
             </div>
              
              <div class="bento-item wide">
-                <span class="renaissance-deco">TYPE_00</span>
-                <img src="ASSET 6.jpg" alt="Typo">
-                <div class="item-info"><h3>MONO_TYPE</h3><p>Layout</p></div>
+                <span class="renaissance-deco">.06</span>
+                <img src="ASSET IMAGE/ASSET 6.jpg" alt="Typo" loading="lazy">
+                <div class="item-info"><h3>DYSTOPIA</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item wide">
-                <span class="renaissance-deco">TYPE_00</span>
-                <img src="ASSET 7.jpg" alt="Typo">
-                <div class="item-info"><h3>MONO_TYPE</h3><p>Layout</p></div>
+                <span class="renaissance-deco">.07</span>
+                <img src="ASSET IMAGE/ASSET 7.jpg" alt="Typo" loading="lazy">
+                <div class="item-info"><h3>LAST PARADISE</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item">
-                 <span class="renaissance-deco">LOGOTYPE</span>
-                <img src="ASSET 8.png" alt="Abstract">
-                <div class="item-info"><h3>LIQUID_METAL</h3><p>3D Render</p></div>
+                 <span class="renaissance-deco">.08</span>
+                <img src="ASSET IMAGE/ASSET 8.png" alt="Abstract" loading="lazy">
+                <div class="item-info"><h3>PURGE</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item tall">
-                <span class="renaissance-deco">CLASSIC_REF</span>
-                <img src="ASSET 10.png" alt="Art">
-                <div class="item-info"><h3>DAVID_REMIX</h3><p>Poster Art</p></div>
+                <span class="renaissance-deco">.09</span>
+                <img src="ASSET IMAGE/ASSET 10.png" alt="Art" loading="lazy">
+                <div class="item-info"><h3>FEVERED DREAM</h3><p>DESIGN EXPLORATION</p></div>
             </div>
 
             <div class="bento-item big">
-                <span class="renaissance-deco">MASTERPIECE</span>
-                <img src="ASSET 11.jpg" alt="Main Work">
-                <div class="item-info"><h3>THE_LAST_PIXEL</h3><p>Branding</p></div>
+                <span class="renaissance-deco">.10</span>
+                <img src="ASSET IMAGE/ASSET 11.jpg" alt="Main Work" loading="lazy">
+                <div class="item-info"><h3>END</h3><p>DESIGN EXPLORATION</p></div>
+            </div>
+
+             <div class="bento-item">
+                <span class="renaissance-deco">.11</span>
+                <img src="ASSET IMAGE/ASSET 9.jpg" alt="Pixel" loading="lazy">
+                <div class="item-info"><h3>PAIN</h3><p>DESIGN EXPLORATION</p></div>
+            </div>
+
+            <div class="bento-item tall">
+                <span class="renaissance-deco">.12</span>
+                <img src="ASSET IMAGE/ASSET 14.png" alt="Art" loading="lazy">
+                <div class="item-info"><h3>COLDMIND</h3><p>POSTERS</p></div>
+            </div>
+
+            <div class="bento-item">
+                <span class="renaissance-deco">.13</span>
+                <img src="ASSET IMAGE/ASSET 12.png" alt="Pixel" loading="lazy">
+                <div class="item-info"><h3>BROKENDREAMS</h3><p>DESIGN EXPLORATION</p></div>
+            </div>
+
+            <div class="bento-item big">
+                <span class="renaissance-deco">.14</span>
+                <img src="ASSET IMAGE/ASSET 15.jpg" alt="Main Work" loading="lazy">
+                <div class="item-info"><h3>RE;BIRTH</h3><p>ALBUM ART EXPLORATION</p></div>
+            </div>
+
+            <div class="bento-item wide">
+                <span class="renaissance-deco">.15</span>
+                <img src="ASSET IMAGE/ASSET 16.png" alt="Typo" loading="lazy">
+                <div class="item-info"><h3>HEXZACT ASCII TYPE</h3><p>ASCII IMAGE</p></div>
+            </div>
+
+            <div class="bento-item tall">
+                <span class="renaissance-deco">.16</span>
+                <img src="ASSET IMAGE/ASSET 13.png" alt="Art" loading="lazy">
+                <div class="item-info"><h3>FULL OF STRANGER</h3><p>POSTERS</p></div>
             </div>
         </div>
     </main>
@@ -470,7 +529,21 @@
     </div>
 </div>
 
+<!-- Loading Screen -->
+<div id="loading-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: var(--bg-color); color: var(--text-main); display: flex; justify-content: center; align-items: center; z-index: 9999; font-family: var(--font-mono); font-size: 16px; text-align: center;">
+    <div id="ascii"></div>
+    <script src="http://www.qqpr.com/ascii/js/1003.js"></script>
+</div>
+
 <script>
+    // Loading screen fade out after 5 seconds
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.style.display = 'none';
+        }, 5000);
+    });
+
     document.addEventListener('DOMContentLoaded', function() {
         const bentoItems = document.querySelectorAll('.bento-item');
         const modal = document.getElementById('imageModal');
@@ -517,22 +590,23 @@
             console.log('Audio loaded successfully');
         });
 
-        // Set initial button state to on
-        musicBtn.textContent = '🔊';
+        // Set initial indicator to gray
+        const musicIndicator = document.getElementById('music-indicator');
+        musicIndicator.style.backgroundColor = 'gray';
 
         // Try to auto-play music on load
         bgMusic.play().catch(function(error) {
             console.log('Autoplay blocked by browser:', error);
-            // Keep button as 🔊, user can click to play
+            musicIndicator.style.backgroundColor = 'gray';
         });
 
-        // Update button state based on actual play/pause
+        // Update indicator color based on play/pause
         bgMusic.addEventListener('play', function() {
-            musicBtn.textContent = '🔊';
+            musicIndicator.style.backgroundColor = 'green';
         });
 
         bgMusic.addEventListener('pause', function() {
-            musicBtn.textContent = '🔇';
+            musicIndicator.style.backgroundColor = 'red';
         });
 
         musicBtn.addEventListener('click', function() {
@@ -540,6 +614,7 @@
                 bgMusic.play().catch(function(error) {
                     console.error('Play failed:', error);
                     alert('Failed to play audio. Check browser permissions.');
+                    musicIndicator.style.backgroundColor = 'gray';
                 });
             } else {
                 bgMusic.pause();
@@ -548,6 +623,24 @@
 
         minimizeBtn.addEventListener('click', function() {
             musicTitle.style.display = 'none';
+        });
+
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.style.display = 'block';
+            } else {
+                backToTopBtn.style.display = 'none';
+            }
+        });
+
+        backToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     });
 </script>
@@ -559,6 +652,8 @@
     <button id="minimize-title" style="background: none; border: none; color: var(--accent); cursor: crosshair; font-size: 10px; margin-left: 5px;">×</button>
 </div>
 
-<button id="music-toggle" style="position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: var(--bg-color); border: none; padding: 10px; cursor: crosshair; font-size: 16px; z-index: 1000;">🔇</button>
+<button id="music-toggle" style="position: fixed; bottom: 20px; right: 20px; background: var(--accent); color: var(--bg-color); border: none; padding: 10px; cursor: crosshair; font-size: 16px; z-index: 1000; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;"><span id="music-indicator" style="width: 10px; height: 10px; border-radius: 50%; background-color: gray;"></span></button>
+
+<button id="back-to-top" style="position: fixed; bottom: 80px; right: 20px; background: var(--accent); color: var(--bg-color); border: none; padding: 10px; cursor: crosshair; font-size: 16px; z-index: 1000; display: none; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;"><img src="arrow-up-icon.png" alt="Back to Top" style="width: 16px; height: 16px;"></button>
 
 </body>
